@@ -1,0 +1,13 @@
+使用方法:
+1.掛改js:jquery.lazload.js
+
+2.在</body>前加上:
+<!-- lazyload -->
+<script>
+$(document).ready(function(e) {
+     $("img").lazyload({
+            effect : "fadeIn",
+	    //placeholder: "http://1.bp.blogspot.com/-Qt2R-bwAb4M/T8WKoNKBHRI/AAAAAAAACnA/BomA-Whl_Bk/s1600/grey.gif"//一開始放置的代替圖
+        });
+    });
+</script>

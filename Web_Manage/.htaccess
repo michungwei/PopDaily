@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www.popdaily.com.tw$ [NC]
+RewriteRule ^(.*)$ http://popadmin.popdaily.com.tw/Web_Manage/ [R=301,L]
