@@ -53,6 +53,7 @@ function scrollTop(className) {
 
 function popupDiv(div_id)
 {
+/*
 	var date = new Date();
 	if( !$.cookie('popdaily_mask') && jQuery(window).width() <= 767)
 	{
@@ -69,6 +70,15 @@ function popupDiv(div_id)
 		$(".popupBox-close").delay(2000).show(0);
 		console.log(".popupBox-close delay show");
 	}
+*/
+
+		var div_obj = $("#"+ div_id);
+		$(div_obj).removeClass('hidden-mobile');
+		$(div_obj).delay(2000).fadeIn('fast', function() {
+			$("#mask").show();
+			$('.popupBox-close').show();
+		});
+
 }
 
 function hideDiv(div_id)

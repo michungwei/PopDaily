@@ -521,10 +521,10 @@ $db -> close();
 				placeholder: "http://1.bp.blogspot.com/-Qt2R-bwAb4M/T8WKoNKBHRI/AAAAAAAACnA/BomA-Whl_Bk/s1600/grey.gif"
 			});
 		}
-		
+		/*
 		$(".popupBox-close").hide();
 		$("#popupBox").hide();
-		popupDiv("popupBox");
+		popupDiv("popupBox");*/
     });
     </script>
 </body>

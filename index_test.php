@@ -2,6 +2,8 @@
 include_once("_config.php");
 include_once($inc_path."_getpage.php");
 
+error_reporting(0);
+
 $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
 //分類
@@ -93,10 +95,10 @@ $db -> close();
 	<script src="scripts/idle.js"></script>
 	<script src="scripts/bootstrap.js"></script>
 	<script src="scripts/jquery.cookie.js"></script>
-	<script src="scripts/all.js"></script>
+	<script src="scripts/all_test.js"></script>
     <script src="scripts/search.js"></script>
 	<script src="scripts/fancybox/jquery.fancybox.js"></script>
-	<?php include_once("analytics.php"); ?>
+	<?php include_once("analytics_test.php"); ?>
 	<script>
 	if(jQuery(window).width()<=767)
 		{
@@ -229,7 +231,7 @@ $db -> close();
 			<div class="popupBox-Ad" align = "center">
 				<!-- popdaily_mobile_inter_300x250 -->
 				<div id='div-gpt-ad-1426590175838-0'>
-				<script type='text/javascript'>
+				<script type='text/javascript'>				
 				googletag.cmd.push(function() { googletag.display('div-gpt-ad-1426590175838-0'); });
 				</script>
 				</div>
@@ -600,10 +602,6 @@ $db -> close();
             effect : "fadeIn",
 			//placeholder: "http://1.bp.blogspot.com/-Qt2R-bwAb4M/T8WKoNKBHRI/AAAAAAAACnA/BomA-Whl_Bk/s1600/grey.gif"
         });*/
-		
-		$(".popupBox-close").hide();
-		$("#popupBox").hide();
-		popupDiv("popupBox");
     });
     </script>
 </body>

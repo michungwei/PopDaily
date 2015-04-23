@@ -44,10 +44,18 @@ node.parentNode.insertBefore(gads, node);
 </script>
 
 <script type='text/javascript'>
+
 googletag.cmd.push(function() {
-googletag.defineSlot('/7682122/popdaily_mobile_inter_300x250', [[300, 250], [300, 600], [320, 480]], 'div-gpt-ad-1426590175838-0').addService(googletag.pubads());
-googletag.pubads().enableSingleRequest();
-googletag.enableServices();
+	googletag.defineSlot('/7682122/popdaily_mobile_inter_300x250', [[300, 250], [300, 600], [320, 480]], 'div-gpt-ad-1426590175838-0').addService(googletag.pubads());
+	googletag.pubads().enableSingleRequest();
+	googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+
+			$(".popupBox-close").hide();
+			$("#popupBox").hide();
+			popupDiv("popupBox");
+
+	});
+	googletag.enableServices();
 });
 </script>
 
