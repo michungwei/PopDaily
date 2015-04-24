@@ -727,9 +727,9 @@ if($endPos != null)
 			});
 		}
 
-		$(".popupBox-close").hide();
+		/*$(".popupBox-close").hide();
 		$("#popupBox").hide();
-		popupDiv("popupBox");
+		popupDiv("popupBox");*/
     });
     </script>
 </body>
