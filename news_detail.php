@@ -473,7 +473,7 @@ if($endPos != null)
 						</div>
 					</div>
 					<div class="subtitle-advtise" align = "center">
-						<div class="subtitle-advtise_center">
+						<div class="subtitle-advtise_center mt_10 mb_10">
 							<?php if(isset($adv["7"])){echo $adv["7"];}?>
 							<?php if(isset($adv["8"])){echo $adv["8"];}?>
 						</div>

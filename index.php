@@ -1,6 +1,11 @@
 <?php
+
+
+
 include_once("_config.php");
 include_once($inc_path."_getpage.php");
+
+error_reporting(0);
 
 $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
@@ -235,7 +240,7 @@ $db -> close();
 			<div class="topLineBar hidden-mobile">
 			</div>
 			<div class="subtitle-advtise">
-				<div class="subtitle-advtiseL">
+				<div class="subtitle-advtiseL mb_15">
                     <?php if(isset($adv["6"])){echo $adv["6"];}?>
 				</div>
 				<div class="subtitle-advtiseR hidden-mobile">
@@ -501,7 +506,7 @@ $db -> close();
 					<span class="footer_icon border_right1 footer_mobile_border">
 						<div>
 						<a href="https://www.facebook.com/pages/POP-DAILY/445164788956922" target="_blank" class="icon01" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('fficon01','','images/footer_icon01over.png')"><img src="images/footer_icon01.png" height="31" width="31" name="fficon01" alt=""></a>
-						<a href="#" target="_blank" class="icon02" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('fficon02','','images/footer_icon02over.png')"><img src="images/footer_icon02.png" height="31" width="31" name="fficon02" alt=""></a>
+						<a href="http://instagram.com/popdailymag" target="_blank" class="icon02" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('fficon02','','images/footer_icon02over.png')"><img src="images/footer_icon02.png" height="31" width="31" name="fficon02" alt=""></a>
 						</div>
 					</span>
 				</div>
