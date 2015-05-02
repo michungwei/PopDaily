@@ -12,19 +12,20 @@ $btnvalue = post("savenews", 1);
 
 
 $data["news_title"] = post("title", 1);
-$data["video_url"] = request_str("video_url");
 $data["news_content"] = request_str("content");
 /*$data["news_ind"] = getMaxInd($table_news, $ind_column, "");*/
 $data["news_isshow"] = post("isshow");
+$data["news_is18up"] = post("is18up");
 $data["news_inrightshow"] =  post("inrightshow");
-$data["news_slidershow"] =  post("slidershow");
 $data["newsType_id"] = post("type");
 $data["news_showType"] = post("showType");
-$data["news_edittime"] = request_cd();
+
 if(post("aut_id") != "")
 	$data["news_aut_id"] = post("aut_id");
 else
 	$data["news_aut_id"] = $_SESSION["userid"];
+
+$data["news_edittime"] = request_cd();
 /*$data["news_author"] =  post("news_author", 1);*/
 $data["news_upday"] = UIdate_change(post("news_upday",1));
 
@@ -68,15 +69,11 @@ if($file -> file_name != ""){
 $db -> query_update($table_news, $data, "$id_column = $id");
 $db -> close();
 
-if($btnvalue=="儲 存 並 預 覽" && $data["newsType_id"] == 10){
-	script("修改完成!", "../../video_detail_view.php?nid=".$id);
-}
-else if($btnvalue=="儲 存 並 預 覽")
-{
-	script("修改完成!", "../../news_detail_view.php?nid=".$id);
+if($btnvalue=="儲 存 並 預 覽"){
+script("修改完成!", "../../news_detail_view.php?nid=".$id);
 }
 
-script("修改完成!", "edit_test.php?id=".$id);
+script("修改完成!", "edit.php?id=".$id);
 
 
 /*End PHP*/

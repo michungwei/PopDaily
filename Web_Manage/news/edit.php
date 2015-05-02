@@ -18,12 +18,13 @@ if($row){
 	$content = $row["news_content"];
 	$pic = $row["news_banner"];
 	$is_show = $row["news_isshow"];
+	$is_18up = $row["news_is18up"];
 	$inrightshow = $row["news_inrightshow"];
 	$showType = $row["news_showType"];
 	$newsType_id = $row["newsType_id"];
 	$edittime = $row["news_edittime"];
 	$createtime = $row["news_createtime"];
-	/*$news_author = $row["news_author"];*/
+	$news_aut_id = $row["news_aut_id"];
 	$news_upday = UIdate_change_0($row["news_upday"]);
 	
 	
@@ -36,6 +37,17 @@ $sql_type = "SELECT *
 			ORDER BY newsType_ind";
 $rows_type = $db -> fetch_all_array($sql_type);
 
+$userId = $_SESSION["userid"];
+
+$sql = "SELECT * 
+			FROM $table_admin 
+			WHERE admin_id = '$userId'";
+$row_user = $db -> query_first($sql);
+
+$sql = "SELECT * 
+			FROM $table_admin 
+			ORDER BY admin_id";
+$rows_allUser = $db -> fetch_all_array($sql);
 
 $db->close();
 
@@ -122,6 +134,23 @@ $(document).ready(function(){
 							<td width="30" valign="top"><h4 class="input-text-title">標題</h4></td>
 							<td><input style="width: 98.5%;" type="text" name="title" id="title" size="100%" value="<?php echo $title; ?>"/></td>
 						</tr>
+						<tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">作者</h4></td>
+                            <td><select name="aut_id" id="aut_id" <?php	if($row_user["admin_auth"] == "2")
+																	{
+																	echo "disabled";
+																	}
+																	?>>
+							<?php
+								foreach($rows_allUser as $row_allUser){
+							?>
+								<option value="<?php echo $row_allUser["admin_id"]; ?>" <?php echo ($news_aut_id == $row_allUser["admin_id"]) ? "selected" : ""; ?>><?php echo $row_allUser["admin_cname"]; ?></option>
+							<?php
+								}
+							?>
+                                </select>
+                            </td>
+                        </tr>    
 						<!--<tr>
 							<td width="150" valign="top"><h4 class="input-text-title">作者</h4></td>
 							<td><input type="text" name="news_author" id="news_author" size="50" value="<?php /*echo $news_author; */?>"/></td>
@@ -163,6 +192,12 @@ $(document).ready(function(){
                             <td><input type="checkbox" name="isshow" id="isshow" <?php echo ($is_show == 1) ? "checked" : ""; ?> value="1" />
                                 &nbsp;
                                 顯示 </td>
+                        </tr>
+                        <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">是否為18禁</h4></td>
+                            <td><input type="checkbox" name="is18up" id="is18up" <?php echo ($is_18up == 1) ? "checked" : ""; ?> value="1" />
+                                &nbsp;
+                                 </td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">是否右方顯示</h4></td>

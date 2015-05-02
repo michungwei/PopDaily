@@ -36,6 +36,9 @@ if($keyword1 != ""){
 if($is_show != ""){
 	$sql_str .= " AND n.news_isshow = $is_show";
 }
+if($is_18up != ""){
+    $sql_str .= " AND n.news_is18up = $is_18up";
+}
 if($keyword2 != ""){
 	$sql_str .= " AND a.admin_id = $keyword2";
 }
@@ -177,6 +180,7 @@ $(function() {
                         <th width="50" align="center">點擊數</th>
                         <th width="120" align="center">是否大圖顯示</th>
                         <th width="60" align="center">是否顯示</th>
+                        <th width="60" align="center">18禁</th>
                         <th width="100" align="center">是否右方顯示</th>
                         <th width="120" align="center">新聞上架時間</th>
                         <th width="120" align="center">建立時間</th>
@@ -204,6 +208,7 @@ $(function() {
                         <td align="center"><?php echo $row["news_clicknum"]; ?></td>
                         <td align="center"><?php echo $ary_yn[$row["news_showType"]]; ?></td>
                         <td align="center"><?php echo $ary_yn[$row["news_isshow"]]; ?></td>
+                        <td align="center"><?php echo $ary_yn[$row["news_is18up"]]; ?></td>
                         <td align="center"><?php echo $ary_yn[$row["news_inrightshow"]]; ?></td>
                         <td align="center"><?php echo $row["news_upday"]; ?></td>
                         <td align="center"><?php echo $row["news_createtime"]; ?></td>

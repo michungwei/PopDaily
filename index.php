@@ -10,14 +10,14 @@ error_reporting(0);
 $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
 //分類
-$sql_newt = "SELECT * 
+$sql_newt = "SELECT *
 		    FROM $table_newstype
 			WHERE $isshow_newsType=1
 			ORDER BY $ind_nType DESC";
 
 $rows_newt = $db -> fetch_all_array($sql_newt);
 //廣告
-$sql_adv = "SELECT * 
+$sql_adv = "SELECT *
 		    FROM $table_adv
 			WHERE $isshow_adv=1";
 
@@ -27,7 +27,7 @@ foreach($rows_adv as $row_adv){
   $adv[$row_adv["adv_id"]]=$row_adv["adv_link"];
 }
 //手機下方廣告
-$sql_adv = "SELECT * 
+$sql_adv = "SELECT *
 		    FROM $table_adv
 			WHERE $isshow_adv=1 AND adv_id in(1,2)
 			Limit 0,1";
@@ -36,7 +36,7 @@ $rowsp_adv = $db -> query_first($sql_adv);
 shuffle($rowsp_adv);
 
 //大banner
-$sql_banner = "SELECT * 
+$sql_banner = "SELECT *
 		       FROM $table_banner_b
 			   WHERE $isshow_banner_b=1
 			   ORDER BY $ind_banner DESC";
@@ -44,7 +44,7 @@ $rows_banner = $db -> fetch_all_array($sql_banner);
 
 
 //右方新聞
-/*$sql_rnews = "SELECT * 
+/*$sql_rnews = "SELECT *
 		      FROM $table_news
 			  WHERE $isshow_news=1 AND $isrightshow_news=1 AND $news_upday<=NOW()
 			  ORDER BY RAND() LIMIT 6";
@@ -52,7 +52,7 @@ $rows_banner = $db -> fetch_all_array($sql_banner);
 $rows_rnews = $db -> fetch_all_array($sql_rnews);*/
 
 //右方新聞(每周更新)
-$sql_rnews = "SELECT * 
+$sql_rnews = "SELECT *
 		      FROM $table_news
 			  WHERE $isshow_news=1 AND TO_DAYS(NOW()) - TO_DAYS(news_upday) <= 7
 			  ORDER BY news_clicknum DESC LIMIT 6";
@@ -66,7 +66,7 @@ if($keyword != ""){
 }
 
 //新聞列表
-$sql = "SELECT * 
+$sql = "SELECT *
 		FROM $table_news n,$table_newstype nt ,$table_admin a
 	    WHERE n.newsType_id=nt.newsType_id AND a.admin_id=n.news_aut_id AND n.$news_upday<=NOW() AND n.$isshow_news = 1 $sql_str
 		ORDER BY $news_upday DESC";
@@ -98,7 +98,7 @@ $db -> close();
 	<script src="scripts/idle.js"></script>
 	<script src="scripts/bootstrap.js"></script>
 	<script src="scripts/jquery.cookie.js"></script>
-	<script src="scripts/all.js"></script>
+	<script src="scripts/all.js?20150427"></script>
     <script src="scripts/search.js"></script>
 	<script src="scripts/fancybox/jquery.fancybox.js"></script>
 	<?php include_once("analytics.php"); ?>
@@ -115,11 +115,11 @@ $db -> close();
 						path: function(index) {
 							return "index.php?page=" + index;
 						},
-			
+
 						loading: {							msgText : 'Loading...',    //加载时的提示语
 							finishedMsg: '您已經閱讀完全部了喔！',
 							finished: function() {
-								var el = document.body; 
+								var el = document.body;
 								$('#infscr-loading').hide();
 								$('#page-nav').show();
 								//console.log("count = "+ count);
@@ -127,10 +127,10 @@ $db -> close();
 						}
 
 					});
-				
+
 					$(window).unbind('.infscr');
 					$('#page-nav').click(function() {
-						console.log("[desktop]page-nav clicked!!!");
+						if(console) {console.log("[desktop]page-nav clicked!!!");}
 						$('.content_sectionL').infinitescroll('retrieve');
 						return false;
 					});
@@ -161,9 +161,7 @@ $db -> close();
 			<div class="popupBox-Ad" align = "center">
 				<!-- popdaily_mobile_inter_300x250 -->
 				<div id='div-gpt-ad-1426590175838-0'>
-				<script type='text/javascript'>
-				googletag.cmd.push(function() { googletag.display('div-gpt-ad-1426590175838-0'); });
-				</script>
+				
 				</div>
 			</div>
 		</div>
@@ -225,7 +223,7 @@ $db -> close();
 					unset($i);
 				?>
 			</nav>
-			
+
 			<div class="navsidebar hidden-mobile">
 				<ul>
 					<li class="search">
@@ -290,7 +288,7 @@ $db -> close();
 				</div>
 			</div>
 			<div class="subtitle-advtise">
-				<div class="subtitle-advtise_center">
+				<div class="subtitle-advtise_center mb_30">
                     <?php if(isset($adv["8"])){echo $adv["8"];}?>
 				</div>
 			</div>
@@ -300,10 +298,10 @@ $db -> close();
 					<!-- 內文 Start -->
                     <?php
 					 $i=1;
-					 foreach($rows_news as $row_news){ 
+					 foreach($rows_news as $row_news){
 					?>
 					<div class="content_block">
-                    
+
 						<div class="title">
 							<div class="titleL"><h3><a href="news_detail.php?nid=<?php echo $row_news["news_id"];?>" class="btn"><?php echo $row_news["news_title"];?></a></h3></div>
 							<div class="titleR">
@@ -315,7 +313,7 @@ $db -> close();
                             <span><img src="images/icon_cal.png" height="15" width="16" alt=""></span>
 							<span class="date_text">
 								<?php
-									echo date("m.d.y",strtotime($row_news["news_createtime"]));//strtotime轉化為int格式	
+									echo date("m.d.y",strtotime($row_news["news_createtime"]));//strtotime轉化為int格式
 								?>
 								/
 								<font class="hidden-mobile">
@@ -326,8 +324,8 @@ $db -> close();
 								</font>
 								<?php
 									echo $row_news["admin_cname"];
-								?> 	
-							    <?php 
+								?>
+							    <?php
 								   // echo date("m.d.y",strtotime($row_news["news_createtime"]));//strtotime轉化為int格式
 								   // echo "&nbsp;/&nbsp;";
 								   // echo date("l",strtotime($row_news["news_createtime"]));//strtotime轉化為int格式
@@ -367,7 +365,7 @@ $db -> close();
 					if(count($rows_news)=="0"){
 					?>
                     <div class="sorry_error">抱歉，我們沒有找到任何相關資訊</div>
-                    <?php 
+                    <?php
 				    }else{
 					?>
 					<!-- 分頁 Start -->
@@ -420,7 +418,7 @@ $db -> close();
                     <?php
                      }
 					?>
-                    
+
 					<div class="content_blockFB">
 						<div class="fb-page" data-href="https://www.facebook.com/PopDaliyMag" data-hide-cover="true" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/PopDaliyMag"><a href="https://www.facebook.com/PopDaliyMag">PopDaily 波波黛莉的異想世界</a></blockquote></div></div>
 						<!--
@@ -486,7 +484,7 @@ $db -> close();
 		<footer id="footer">
 			<div id="page-nav" align="center" class="visible-mobile">
 				<a href="news_detail.php?page=2">載入更多女孩話題</a>
-			</div>	
+			</div>
 			<div class="footer_section">
 				<div class="navi">
 					<?php
@@ -530,6 +528,8 @@ $db -> close();
 		$(".popupBox-close").hide();
 		$("#popupBox").hide();
 		popupDiv("popupBox");*/
+        popupDiv_index("popupBox");
+
     });
     </script>
 </body>

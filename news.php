@@ -6,6 +6,8 @@ $ntid=get("ntid");
 $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
 
+error_reporting(0);
+
 //分類
 $sql_newt = "SELECT * 
 		    FROM $table_newstype
@@ -126,9 +128,6 @@ $db -> close();
 			<div class="popupBox-Ad" align = "center">
 				<!-- popdaily_mobile_inter_300x250 -->
 				<div id='div-gpt-ad-1426590175838-0'>
-				<script type='text/javascript'>
-				googletag.cmd.push(function() { googletag.display('div-gpt-ad-1426590175838-0'); });
-				</script>
 				</div>
 			</div>
 		</div>

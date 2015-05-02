@@ -2,6 +2,8 @@
 include_once("_config.php");
 include_once($inc_path."_getpage.php");
 
+error_reporting(0);
+
 /*$nid=get("nid");*/
 $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
@@ -54,6 +56,9 @@ $sql = "SELECT *
 		FROM $table_news n,$table_newstype nt,$table_admin a
 		WHERE n.newsType_id=nt.newsType_id AND a.admin_id=n.news_aut_id AND n.$isshow_news=1 AND n.news_id='$nid' AND n.$news_upday<=NOW()";
 $row_news = $db -> query_first($sql);
+
+$is_18up = $row_news['news_is18up'];
+//echo "<script>console.log( 'is_18up: " . $is_18up . "' );</script>";
 
 
 //點擊次數紀錄
@@ -140,6 +145,7 @@ if($endPos != null)
 	<link rel="stylesheet" href="css/style.css?ver=150420">
     <link rel="icon" href="<?php echo $web_icon?>" type="image/png" />
 	<link rel="stylesheet" href="scripts/fancybox/jquery.fancybox.css">
+    <link rel="stylesheet" href="ui/lazy-load-xt-master/dist/jquery.lazyloadxt.fadein.css">
 	<script src="scripts/jquery-1.9.1.js"></script>
 	<script src="scripts/jquery.infinitescroll.min.js"></script>
 	<script src="scripts/jquery.timeout.interval.idle.js"></script>
@@ -148,12 +154,14 @@ if($endPos != null)
 	<script src="scripts/all.js"></script>
     <script src="scripts/search.js"></script>
 	<script src="scripts/fancybox/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="ui/lazy-load-xt-master/dist/jquery.lazyloadxt.min.js"></script>
     <script>
 		function share2FB(){
 		 	window.open("http://www.facebook.com/sharer/sharer.php?u=<?php echo $web_url."news_detail.php?nid=".$nid; ?>",'','width=653,height=369');
 		}
 	</script>
 	<script>
+	/*$(document).ready(function() {
 		if(jQuery(window).width()>767)
 		{
 			$(function(){
@@ -168,7 +176,7 @@ if($endPos != null)
 						nextSelector	:	'#page-nav a',
 						itemSelector	:	'.infi_block',
 						animate      	:   true,
-						debug 			:   false,
+						debug 			:   true,
 						maxPage			:	<?php echo $likenews_num; ?>,
 						path: function(index) {
 							return "news_detail.php?nid=<?php echo $nid;?>&page=" + index;
@@ -253,6 +261,7 @@ if($endPos != null)
 					});
 			});
 		}
+	});*/
 	</script>
 	<?php include_once("analytics.php"); ?>
 </head>
@@ -275,9 +284,6 @@ if($endPos != null)
 			<div class="popupBox-Ad" align = "center">
 				<!-- popdaily_mobile_inter_300x250 -->
 				<div id='div-gpt-ad-1426590175838-0'>
-				<script type='text/javascript'>
-				googletag.cmd.push(function() { googletag.display('div-gpt-ad-1426590175838-0'); });
-				</script>
 				</div>
 			</div>
 		</div>
@@ -288,7 +294,7 @@ if($endPos != null)
 		</div>
 		<a href="#" class="gotopbtn"></a>
 		<header id="header">
-			<div><a class="mobile-menu visible-mobile" href="#menu2"></a></div>
+			<a class="mobile-menu visible-mobile" href="#menu2"></a>
 			<ul class="mobile-list">
 				<?php
 					foreach ($rows_newt as $row_newt) {
@@ -441,6 +447,7 @@ if($endPos != null)
 
 															if($_SERVER['SERVER_NAME'] == 'www.popdaily.com.tw')
 																$row_news["news_content"] = str_replace('popadmin.popdaily.com', 'www.popdaily.com', $row_news["news_content"]);
+                                                                $row_news['news_content'] = str_replace('<img src=', '<img data-src=', $row_news['news_content']);
                             	echo $row_news["news_content"];
                             ?>
 						</div>
@@ -570,7 +577,7 @@ if($endPos != null)
 						var mediav_ad_height = '250';
 						</script>
 						<script type="text/javascript" language="javascript" charset="utf-8"  src="http://static.mediav.com/js/mvf_g2.js"></script>
-					
+
 					</div>
 					<div id="slidebar_adv" class="hidden-mobile">
 						<?php
@@ -669,9 +676,9 @@ if($endPos != null)
 		</section>
 		<div class="clear"></div>
 		<footer id="footer">
-		<div id="page-nav" align="center">
+		<!--<div id="page-nav" align="center">
 			<a href="news_detail.php?page=2">載入更多女孩話題</a>
-		</div>
+		</div>-->
 		<div class="clear"></div>
 		<div style="margin-left:25px;">
 			<script>
@@ -716,20 +723,30 @@ if($endPos != null)
 
 	</div>
 <!-- lazyload -->
+
     <script type="text/javascript" src="ui/lazyload-master/jquery.lazyload.js"></script>
+
     <script>
 	$(document).ready(function(e) {
-        if($(window).width() <= 767)
+
+        /*if($(window).width() <= 767)
 		{
 			$(".description img").lazyload({
 				effect : "fadeIn",
 				placeholder: "http://1.bp.blogspot.com/-Qt2R-bwAb4M/T8WKoNKBHRI/AAAAAAAACnA/BomA-Whl_Bk/s1600/grey.gif"
 			});
-		}
+        } */
 
 		/*$(".popupBox-close").hide();
 		$("#popupBox").hide();
 		popupDiv("popupBox");*/
+		var is18up = 0;
+        <?php if($is_18up) {echo "is18up = 1;";} ?>
+        if(is18up)
+        {
+          return;
+        }  
+		popupDiv("popupBox");
     });
     </script>
 </body>

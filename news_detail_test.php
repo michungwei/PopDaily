@@ -2,6 +2,8 @@
 include_once("_config.php");
 include_once($inc_path."_getpage.php");
 
+error_reporting(0);
+
 /*$nid=get("nid");*/
 $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
@@ -140,6 +142,7 @@ if($endPos != null)
 	<link rel="stylesheet" href="css/style.css?ver=150420">
     <link rel="icon" href="<?php echo $web_icon?>" type="image/png" />
 	<link rel="stylesheet" href="scripts/fancybox/jquery.fancybox.css">
+    <!--<link rel="stylesheet" href="ui/lazy-load-xt-master/dist/jquery.lazyloadxt.fadein.css">-->
 	<script src="scripts/jquery-1.9.1.js"></script>
 	<script src="scripts/jquery.infinitescroll.min.js"></script>
 	<script src="scripts/jquery.timeout.interval.idle.js"></script>
@@ -148,12 +151,14 @@ if($endPos != null)
 	<script src="scripts/all.js"></script>
     <script src="scripts/search.js"></script>
 	<script src="scripts/fancybox/jquery.fancybox.js"></script>
+    <!--<script type="text/javascript" src="ui/lazy-load-xt-master/dist/jquery.lazyloadxt.min.js"></script>-->
     <script>
 		function share2FB(){
 		 	window.open("http://www.facebook.com/sharer/sharer.php?u=<?php echo $web_url."news_detail.php?nid=".$nid; ?>",'','width=653,height=369');
 		}
 	</script>
 	<script>
+	/*$(document).ready(function() {
 		if(jQuery(window).width()>767)
 		{
 			$(function(){
@@ -168,7 +173,7 @@ if($endPos != null)
 						nextSelector	:	'#page-nav a',
 						itemSelector	:	'.infi_block',
 						animate      	:   true,
-						debug 			:   false,
+						debug 			:   true,
 						maxPage			:	<?php echo $likenews_num; ?>,
 						path: function(index) {
 							return "news_detail.php?nid=<?php echo $nid;?>&page=" + index;
@@ -253,6 +258,7 @@ if($endPos != null)
 					});
 			});
 		}
+	});*/
 	</script>
 	<?php include_once("analytics.php"); ?>
 </head>
@@ -276,7 +282,9 @@ if($endPos != null)
 				<!-- popdaily_mobile_inter_300x250 -->
 				<div id='div-gpt-ad-1426590175838-0'>
 				<script type='text/javascript'>
+				if($(window).width() <= 767) {
 				googletag.cmd.push(function() { googletag.display('div-gpt-ad-1426590175838-0'); });
+				}
 				</script>
 				</div>
 			</div>
@@ -288,7 +296,7 @@ if($endPos != null)
 		</div>
 		<a href="#" class="gotopbtn"></a>
 		<header id="header">
-			<div><a class="mobile-menu visible-mobile" href="#menu2"></a></div>
+			<a class="mobile-menu visible-mobile" href="#menu2"></a>
 			<ul class="mobile-list">
 				<?php
 					foreach ($rows_newt as $row_newt) {
@@ -441,6 +449,7 @@ if($endPos != null)
 
 															if($_SERVER['SERVER_NAME'] == 'www.popdaily.com.tw')
 																$row_news["news_content"] = str_replace('popadmin.popdaily.com', 'www.popdaily.com', $row_news["news_content"]);
+                                                                $row_news['news_content'] = str_replace('<img src=', '<img data-src=', $row_news['news_content']);
                             	echo $row_news["news_content"];
                             ?>
 						</div>
@@ -473,7 +482,7 @@ if($endPos != null)
 						</div>
 					</div>
 					<div class="subtitle-advtise" align = "center">
-						<div class="subtitle-advtise_center">
+						<div class="subtitle-advtise_center mt_10 mb_10">
 							<?php if(isset($adv["7"])){echo $adv["7"];}?>
 							<?php if(isset($adv["8"])){echo $adv["8"];}?>
 						</div>
@@ -537,7 +546,7 @@ if($endPos != null)
 					<?php
 						}else{ echo ''; }
 					?>
-					<!--<div class="mb_30">
+					<div class="mb_30">
 					<script>
 					var mediav_ad_pub = 'T5pthc_1035404';
 					var mediav_ad_width = '300';
@@ -545,7 +554,7 @@ if($endPos != null)
 					</script>
 					<script type="text/javascript" language="javascript" charset="utf-8" src="http:/
 					/static.mediav.com/js/mvf_g2.js"></script>
-					</div>-->
+					</div>
                     <?php
 					 foreach($rows_rnews as $row_rnews){
 					?>
@@ -564,13 +573,13 @@ if($endPos != null)
 <!--
 						<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FPopDaily-%25E6%25B3%25A2%25E6%25B3%25A2%25E9%25BB%259B%25E8%258E%2589%25E7%259A%2584%25E7%2595%25B0%25E6%2583%25B3%25E4%25B8%2596%25E7%2595%258C%2F445164788956922&amp;width&amp;height=427&amp;colorscheme=light&amp;show_faces=false&amp;header=true&amp;stream=true&amp;show_border=true&amp;appId=737197476301628" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:427px;" allowTransparency="true"></iframe>
 //-->
-						<!--<script>
+						<script>
 						var mediav_ad_pub = 'afjPt3_1035406';
 						var mediav_ad_width = '300';
 						var mediav_ad_height = '250';
 						</script>
 						<script type="text/javascript" language="javascript" charset="utf-8"  src="http://static.mediav.com/js/mvf_g2.js"></script>
-					-->
+
 					</div>
 					<div id="slidebar_adv" class="hidden-mobile">
 						<?php
@@ -669,11 +678,11 @@ if($endPos != null)
 		</section>
 		<div class="clear"></div>
 		<footer id="footer">
-		<div id="page-nav" align="center">
+		<!--<div id="page-nav" align="center">
 			<a href="news_detail.php?page=2">載入更多女孩話題</a>
-		</div>
+		</div>-->
 		<div class="clear"></div>
-		<!--<div>
+		<div style="margin-left:25px;">
 			<script>
 			var mediav_ad_pub = 'eEhCak_1035405';
 			var mediav_ad_width = '728';
@@ -681,7 +690,7 @@ if($endPos != null)
 			</script>
 			<script type="text/javascript" language="javascript" charset="utf-8" src="http:/
 			/static.mediav.com/js/mvf_g2.js"></script>
-		</div>-->
+		</div>
 
 			<div class="footer_section">
 				<div class="navi">
@@ -702,7 +711,7 @@ if($endPos != null)
 					<span class="footer_icon border_right1 footer_mobile_border">
 						<div>
 						<a href="https://www.facebook.com/pages/POP-DAILY/445164788956922" target="_blank" class="icon01" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('fficon01','','images/footer_icon01over.png')"><img src="images/footer_icon01.png" height="31" width="31" name="fficon01" alt=""></a>
-						<a href="#" target="_blank" class="icon02" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('fficon02','','images/footer_icon02over.png')"><img src="images/footer_icon02.png" height="31" width="31" name="fficon02" alt=""></a>
+						<a href="http://instagram.com/popdailymag" target="_blank" class="icon02" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('fficon02','','images/footer_icon02over.png')"><img src="images/footer_icon02.png" height="31" width="31" name="fficon02" alt=""></a>
 						</div>
 					</span>
 				</div>
@@ -716,20 +725,23 @@ if($endPos != null)
 
 	</div>
 <!-- lazyload -->
-    <script type="text/javascript" src="ui/lazyload-master/jquery.lazyload.js"></script>
+    
+   <!--<script type="text/javascript" src="ui/lazyload-master/jquery.lazyload.js"></script>-->
+    
     <script>
-	$(document).ready(function(e) {
-		if($(window).width() <= 767)
+	/*$(document).ready(function(e) {
+        
+        if($(window).width() <= 767)
 		{
 			$(".description img").lazyload({
 				effect : "fadeIn",
 				placeholder: "http://1.bp.blogspot.com/-Qt2R-bwAb4M/T8WKoNKBHRI/AAAAAAAACnA/BomA-Whl_Bk/s1600/grey.gif"
 			});
-		}
+        } */
 
-		$(".popupBox-close").hide();
+		/*$(".popupBox-close").hide();
 		$("#popupBox").hide();
-		popupDiv("popupBox");
+		popupDiv("popupBox");*/
     });
     </script>
 </body>

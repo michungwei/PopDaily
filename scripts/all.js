@@ -50,35 +50,52 @@ function scrollTop(className) {
 		}, 500);
 	});
 }
-
+//index page, unlimited
+function popupDiv_index(div_id)
+{
+		var div_obj = $("#"+ div_id);
+		$("#mask").show();
+		$(div_obj).removeClass('hidden-mobile');
+		$(div_obj).fadeIn();
+		enableGta();
+		$(".popupBox-close").delay(2000).show(0);
+}
+//article page
 function popupDiv(div_id)
 {
-/*
 	var date = new Date();
 	if( !$.cookie('popdaily_mask') && jQuery(window).width() <= 767)
 	{
 		date.setTime( date.getTime() + ( 60 * 60 * 1000) );
-		
-		console.log(date);
-	
+		if(console) {console.log(date);}
+
 		$.cookie( 'popdaily_mask', 'yes', { expires : date } );
 		var div_obj = $("#"+ div_id);
 		$("#mask").show();
 		$(div_obj).removeClass('hidden-mobile');
 		$(div_obj).fadeIn();
-		
+        enableGta();
 		$(".popupBox-close").delay(2000).show(0);
-		console.log(".popupBox-close delay show");
+		if(console) {console.log(".popupBox-close delay show");}
 	}
-*/
-
-		var div_obj = $("#"+ div_id);
+	/*var div_obj = $("#"+ div_id);
 		$(div_obj).removeClass('hidden-mobile');
 		$(div_obj).delay(2000).fadeIn('fast', function() {
 			$("#mask").show();
 			$('.popupBox-close').show();
-		});
+		});*/
+}
 
+function enableGta()
+{
+    $('div[id^="div-gpt-ad-"]').each(function() {
+        var div_id = this.getAttribute('id'),
+            gtd = '<scr' + 'ipt type="text/javascript">'
+                + 'googletag.cmd.push(function() { googletag.display("' + div_id + '"); });'
+                + '</scr' + 'ipt>';
+               
+        $('#' + div_id).html(gtd);
+    });
 }
 
 function hideDiv(div_id)
@@ -135,17 +152,17 @@ $(function() {
 		if ($(document).scrollTop() + $(window).height() >= $(document.body).outerHeight() * 0.95) {
 			$('div.fbslide').stop().animate({
 				//"top": "0px",
-				"bottom": "0px", 
+				"bottom": "0px",
 				"opacity": "1"
 			}, 500);
 		}else{
 			$('div.fbslide').stop().animate({
-				"bottom": "-250px", 
+				"bottom": "-250px",
 				"opacity": "0.3"
 			}, 500);
 		}
 	});
-	
+
 });
 $(window).load(function() {
 	$('.adv_block').css({display:'block'});
@@ -159,7 +176,7 @@ $(window).load(function() {
 		$linebtn  = $('.linebtn img'),
 		newcontent_height = $('.content_block .description').height();
 
-	
+
 	var $win = $(window).scroll(function() {
 		if(L_height > R_height){
 			/*console.log('$win.scrollTop() :'+$win.scrollTop() );

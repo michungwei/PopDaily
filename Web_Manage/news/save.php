@@ -12,12 +12,11 @@ $db -> connect();
 
 
 $data["news_title"] = post("title", 1);
-$data["video_url"] = request_str("video_url");
 $data["news_content"] = request_str("content");
 /*$data["news_ind"] = getMaxInd($table_news, $ind_column, "");*/
 $data["news_isshow"] = post("isshow");
+$data["news_is18up"] = post("is18up");
 $data["news_inrightshow"] =  post("inrightshow");
-$data["news_slidershow"] =  post("slidershow");
 $data["newsType_id"] = post("type");
 $data["news_showType"] = post("showType");
 $data["news_createtime"] = request_cd();
@@ -27,7 +26,7 @@ $data["news_upday"] = UIdate_change(post("news_upday",1));
 
 //資料來源 add by StandLee @ 20141008
 $resource = request_str("resource");
-$resource = '<p><span style="color:#D3D3D3;"><span style="font-size:9px;">資料來源： '.$resource.'<p>&nbsp;</p></span></span></p>';
+$resource = '<p><span style="color:#D3D3D3;"><span style="font-size:9px;">資料來源： '.$resource.'</span></span></p>';
 $data["news_content"] .= $resource;
 
 
@@ -67,12 +66,8 @@ $db -> query_insert($table_news, $data);
 $id = mysql_insert_id();
 $db -> close();
 
-if($btnvalue=="儲 存 並 預 覽" && $data["newsType_id"] == 10){
-	script("修改完成!", "../../video_detail_view.php?nid=".$id);
-}
-else
-{
-	script("修改完成!", "../../news_detail_view.php?nid=".$id);
+if($btnvalue=="儲 存 並 預 覽"){
+script("新增成功!", "../../news_detail_view.php?nid=".$id);
 }
 
 
