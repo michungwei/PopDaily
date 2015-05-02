@@ -46,7 +46,7 @@ $db -> close();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?php echo $web_name; ?></title>
 	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style.css?ver=150502">
 	<link rel="stylesheet" href="css/bootstrap.css">
     <link rel="icon" href="<?php echo $web_icon?>" type="image/png" />
     <link rel="stylesheet" href="scripts/fancybox/jquery.fancybox.css">
@@ -102,9 +102,10 @@ $db -> close();
 		<section>
 			<div class="mb_30 headerC">
 			</div>
-			<div class="subtitle-advtise mt_15">
+			<div class="subtitle-advtise mt_15 mb_15">
                 <script>if(jQuery(window).width()>0) { window.document.write('<scr'+'ipt defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></scr' +'ipt><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4054396321663077" data-ad-slot="5740502543" data-ad-format="auto"></ins><scr'+ 'ipt>(adsbygoogle = window.adsbygoogle || []).push({});</scr'+'ipt>');};</script>
 			</div>
+			<div class="clear"></div>
 			<div class="idle_container">
 				<div class="idle_showbox">
 					<img id="show-image" src= "<?php echo $web_path_news,"s",$rows_img[0];  ?>" />

@@ -1124,25 +1124,26 @@ img{/*改*/
 }
 .idle_list .titleL{
 	float: left;
-	background: url(../images/tag.png) no-repeat 0px 0px;
-	background-size:19px;
+	background: url(../images/idle_tag.png) no-repeat 0px 0px;
+	background-size:32px;
 	/*width: 5%;*/
-	width: 19px;
+	width: 32px;
 	height: 26px;
 	line-height: 22px;
 	/*padding-top: 10px;*/
 	font-weight: bold;
-	text-align: center;
+	text-align: left;
 	font-size: 0.9em;
 	/*position: absolute;*/
 	top: 0px;
 	left: 0px;
 	margin-right:2%;
 }
-.idle_list .title a{
+.idle_list .titleL a{
 	text-decoration: none;
 	color: #000;
 	display: block;
+	margin-left: 8px;
 }
 .idle_adv{
 	float: left;
