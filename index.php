@@ -89,7 +89,7 @@ $db -> close();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?php echo $web_name; ?></title>
 	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/style.css?ver=150418">
+	<link rel="stylesheet" href="css/style.css?ver=150506">
 	<link rel="stylesheet" href="css/bootstrap.css">
     <link rel="icon" href="<?php echo $web_icon?>" type="image/png" />
 	<link rel="stylesheet" href="scripts/fancybox/jquery.fancybox.css">
@@ -287,7 +287,15 @@ $db -> close();
 				  	</a>
 				</div>
 			</div>
-			<div class="subtitle-advtise">
+			<!--<div align="center" class="hidden-desktop">
+				<a href="https://line.me/ti/p/%40jgs8655s"><img width="100%" height="auto" border="0" alt="好友人數" src="http://biz.line.naver.jp/line_business/img/btn/addfriends_zh-Hant.png"></a>
+			</div>-->
+			<div class="clear"></div>
+			<div class="line_friend hidden-desktop mb_15" onclick="window.location='https://line.me/ti/p/%40jgs8655s';">
+				<img width ="30" height="30" src="images/line-icon.png"><a>加入好友</a>
+			</div>
+
+			<div class="subtitle-advtise hidden-mobile">
 				<div class="subtitle-advtise_center mb_30">
                     <?php if(isset($adv["8"])){echo $adv["8"];}?>
 				</div>

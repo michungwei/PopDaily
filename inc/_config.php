@@ -22,9 +22,9 @@ $admin_icon = "../images/pop_icon.png";//網頁icon
 
 /*Database資料庫設定*/
 
- $HS = "192.168.192.182";
- $ID = "popdaily";
- $PW = "popdailypass";
+ $HS = "127.0.0.1";
+ $ID = "homestead";
+ $PW = "secret";
  $DB = "popdaily";
 
 

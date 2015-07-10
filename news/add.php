@@ -124,6 +124,13 @@ $(document).ready(function(){
 									顯示 </td>
 							</tr>
 							<tr>
+								<td width="150" valign="top"><h4 class="input-text-title">是否為18禁</h4></td>
+								<td><input type="checkbox" name="is18up" id="is18up" value="1"/>
+									&nbsp;
+									</td>
+							</tr>
+
+							<tr>
 								<td width="150" valign="top"><h4 class="input-text-title">是否右方顯示</h4></td>
 								<td><input type="checkbox" name="inrightshow" id="inrightshow" value="1"/>
 									&nbsp;

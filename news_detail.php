@@ -142,7 +142,7 @@ if($endPos != null)
 	<meta property="og:image" content="<?php echo $content_first_img_url; ?>" ></meta>
 	<title><?php echo $web_name; ?></title>
 	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/style.css?ver=150420">
+	<link rel="stylesheet" href="css/style.css?ver=150506">
     <link rel="icon" href="<?php echo $web_icon?>" type="image/png" />
 	<link rel="stylesheet" href="scripts/fancybox/jquery.fancybox.css">
     <link rel="stylesheet" href="ui/lazy-load-xt-master/dist/jquery.lazyloadxt.fadein.css">
@@ -386,6 +386,12 @@ if($endPos != null)
                     <div class="fb-like" data-href="https://www.facebook.com/PopDaliyMag" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false" data-width="300"></div>
 					<div class="fb-share-button" data-href="<?php echo $web_url;?>news_detail.php?nid=<?php echo $nid; ?>" data-width="40" data-type="box_count"></div>
                 </div>
+
+            <div class="clear"></div>
+			<div class="line_friend hidden-desktop mb_15" onclick="window.location='https://line.me/ti/p/%40jgs8655s';">
+				<img width ="30" height="30" src="images/line-icon.png"><a>加入好友</a>
+			</div>
+
 			<div class="content_section">
 				<div class="content_sectionL content_sectionL_in" id="content_sectionL">
 
@@ -455,6 +461,10 @@ if($endPos != null)
                         <?php
 						}
 						?>
+					</div>
+					<div class="clear"></div>
+					<div class="line_friend hidden-desktop mb_15" onclick="window.location='https://line.me/ti/p/%40jgs8655s';">
+						<img width ="30" height="30" src="images/line-icon.png"><a>加入好友</a>
 					</div>
 					<div class="subtitle-advtise">
 						<div class="subtitle-advtise_center">

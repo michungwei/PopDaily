@@ -18,6 +18,7 @@ if($row){
 	$content = $row["news_content"];
 	$pic = $row["news_banner"];
 	$is_show = $row["news_isshow"];
+	$is_18up = $row["news_is18up"];
 	$inrightshow = $row["news_inrightshow"];
 	$showType = $row["news_showType"];
 	$newsType_id = $row["newsType_id"];
@@ -191,6 +192,12 @@ $(document).ready(function(){
                             <td><input type="checkbox" name="isshow" id="isshow" <?php echo ($is_show == 1) ? "checked" : ""; ?> value="1" />
                                 &nbsp;
                                 顯示 </td>
+                        </tr>
+                        <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">是否為18禁</h4></td>
+                            <td><input type="checkbox" name="is18up" id="is18up" <?php echo ($is_18up == 1) ? "checked" : ""; ?> value="1" />
+                                &nbsp;
+                                 </td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">是否右方顯示</h4></td>

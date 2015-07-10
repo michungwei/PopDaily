@@ -20,8 +20,9 @@ $keyword2 = get("keyword2", 1);//作者
 $keyword3 = get("keyword3", 1);//起始時間
 $keyword4 = get("keyword4", 1);//結束時間
 $is_show = get("isshow", 1);
+$is_18up = get("is18up", 1);
 $page = request_pag("page");
-$query_str = "type=$type&isshow=$is_show&keyword1=$keyword1&keyword2=$keyword2&keyword3=".urlencode($keyword3)."&keyword4=".urlencode($keyword4)."&page=".$page;
+$query_str = "type=$type&isshow=$is_show&is18up=$is_18up&keyword1=$keyword1&keyword2=$keyword2&keyword3=".urlencode($keyword3)."&keyword4=".urlencode($keyword4)."&page=".$page;
 $mtitle = "<a href='index.php?".$query_str."'> 新聞管理 </a>";
 
 /*End PHP*/

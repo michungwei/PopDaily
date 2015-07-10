@@ -22,9 +22,9 @@ if(get("isdel", 1) == 'y'){
 $count = 0;
 $sql_str = "";
 
-if($mauth == "2"){//若為限制權限
+/*if($mauth == "2"){//若為限制權限
 	$sql_str .= " AND n.news_aut_id = $news_aut_id";
-}
+}*/
 
 if($type != ""){
 	$sql_str .= " AND n.newsType_id = $type";
@@ -35,6 +35,9 @@ if($keyword1 != ""){
 
 if($is_show != ""){
 	$sql_str .= " AND n.news_isshow = $is_show";
+}
+if($is_18up != ""){
+    $sql_str .= " AND n.news_is18up = $is_18up";
 }
 if($keyword2 != ""){
 	$sql_str .= " AND a.admin_id = $keyword2";
@@ -177,6 +180,7 @@ $(function() {
                         <th width="50" align="center">點擊數</th>
                         <th width="120" align="center">是否大圖顯示</th>
                         <th width="60" align="center">是否顯示</th>
+                        <th width="60" align="center">18禁</th>
                         <th width="100" align="center">是否右方顯示</th>
                         <th width="120" align="center">新聞上架時間</th>
                         <th width="120" align="center">建立時間</th>
@@ -200,18 +204,26 @@ $(function() {
                         <td align="center"><?php echo $ary_type[$row["newsType_id"]]; ?></td>
                         <td align="center"><a href=<?php echo $file_path."s".$row["news_banner"]; ?> ><img src="<?php echo $file_path."s".$row["news_banner"]; ?>" height="68" onerror="javascript:this.src='../images/nopic.jpg'"></a></td>
                         <td align="center"><?php echo $row["admin_cname"]; ?></td>
-                        <td align="left" style="word-wrap:break-word;overflow:hidden;"><a Target="_new" href="http://popadmin.popdaily.com.tw/news_detail.php?nid=<?php echo $row["news_id"] ?>" ><?php echo $row["news_title"]; ?></a></td>
-                        <td align="center"><?php echo $row["news_clicknum"]; ?></td>
+                        <td align="left" style="word-wrap:break-word;overflow:hidden;"><a Target="_new" href="../../news_detail_view.php?nid=<?php echo $row["news_id"] ?>" ><?php echo $row["news_title"]; ?></a></td>
+                        <td align="center"><?php if($row["news_aut_id"] == $news_aut_id || $mauth == "1") echo $row["news_clicknum"]; ?></td>
                         <td align="center"><?php echo $ary_yn[$row["news_showType"]]; ?></td>
                         <td align="center"><?php echo $ary_yn[$row["news_isshow"]]; ?></td>
+                        <td align="center"><?php echo $ary_yn[$row["news_is18up"]]; ?></td>
                         <td align="center"><?php echo $ary_yn[$row["news_inrightshow"]]; ?></td>
                         <td align="center"><?php echo $row["news_upday"]; ?></td>
                         <td align="center"><?php echo $row["news_createtime"]; ?></td>
                         <td align="center"><?php echo $row["news_edittime"]; ?></td>
                         <!--<td align="center"><a href="?remove=up&nid=<?php /*echo $row["news_id"].'&'.$query_str; */?>">上移</a></td>
                         <td align="center"><a href="?remove=down&nid=<?php /* echo $row["news_id"].'&'.$query_str; */?>">下移</a></td>-->
-                        <td align="center"><a href="edit.php?id=<?php echo $row["news_id"].'&'.$query_str; ?>">修改</a></td>
-                        <td align="center" ><a href="index.php?isdel=y&did=<?php echo $row["news_id"].'&'.$query_str; ?>" onClick="return confirm('您確定要刪除這筆記錄?')">刪除</a></td>
+                        <td align="center">
+							<?php if($row["news_aut_id"] == $news_aut_id || $mauth == "1"){ ?>
+								<a href="edit.php?id=<?php echo $row["news_id"].'&'.$query_str; ?>">修改</a>
+							<?php }else{ ?>
+								<a Target="_new" href="../../news_detail_view.php?nid=<?php echo $row["news_id"] ?>">觀摩</a>
+							<?php }?>
+						</td>
+						
+                        <td align="center" ><?php if($row["news_aut_id"] == $news_aut_id || $mauth == "1"){ ?><a href="index.php?isdel=y&did=<?php echo $row["news_id"].'&'.$query_str; ?>" onClick="return confirm('您確定要刪除這筆記錄?')">刪除</a><?php } ?></td>
                     </tr>
                     <?php
                         

@@ -15,6 +15,7 @@ $data["news_title"] = post("title", 1);
 $data["news_content"] = request_str("content");
 /*$data["news_ind"] = getMaxInd($table_news, $ind_column, "");*/
 $data["news_isshow"] = post("isshow");
+$data["news_is18up"] = post("is18up");
 $data["news_inrightshow"] =  post("inrightshow");
 $data["newsType_id"] = post("type");
 $data["news_showType"] = post("showType");
@@ -59,6 +60,8 @@ if($file -> file_name != ""){
 		/*$data["news_banner"] = $file -> file_name;*/
 	}
 }
+
+$data["news_content"] = str_replace('658px', '100%', $data["news_content"]);
 
 
 $db -> query_insert($table_news, $data);
